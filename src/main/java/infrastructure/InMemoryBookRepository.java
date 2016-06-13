@@ -18,8 +18,7 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public Book find(Integer bookId) {
-        Book book = books.stream().filter(b -> b.hasId(bookId)).findFirst().orElse(new Book());
-        return book;
+        return books.stream().filter(b -> b.hasId(bookId)).findFirst().orElse(new Book());
     }
 
     @Override

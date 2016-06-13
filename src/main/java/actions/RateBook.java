@@ -1,36 +1,22 @@
 package actions;
 
+import domain.Rating;
+
 public class RateBook {
 
-    private final String bookId;
-    private final String description;
-    private final Integer rate;
-    private String userId;
+    private Integer bookId;
+    private final Rating rating;
 
-    public RateBook(String bookId, String description, Integer rate, String userId) {
+    public RateBook(Integer bookId, Rating rating) {
         this.bookId = bookId;
-        this.description = description;
-        this.rate = rate;
-        this.userId = userId;
+        this.rating = rating;
     }
 
-    public String getDescription() {
-        return description;
+    public Rating getRating() {
+        return rating;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getBookId() {
+    public Integer getBookId() {
         return bookId;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 }

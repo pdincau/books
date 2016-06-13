@@ -12,6 +12,8 @@ import domain.Book;
 import domain.Rating;
 import okio.ByteString;
 
+import static com.spotify.apollo.Status.CREATED;
+
 
 public class Apollo {
 
@@ -31,12 +33,12 @@ public class Apollo {
     private static Response<ByteString> addBook(RequestContext context)  {
         Book book = new Book();
         actiondHandler.handle(new AddBook(book));
-        return Response.forStatus(Status.CREATED);
+        return Response.forStatus(CREATED);
     }
 
     private static Response<ByteString> rateBook(RequestContext context)  {
         Rating rating = new Rating("a description", 5, "a user id");
         actiondHandler.handle(new RateBook(BOOKID, rating));
-        return Response.forStatus(Status.CREATED);
+        return Response.forStatus(CREATED);
     }
 }

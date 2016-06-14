@@ -34,7 +34,7 @@ public class Apollo {
     }
 
     private static Response<ByteString> rateBook(RequestContext context)  {
-        String id = context.pathArgs().get("id")
+        String id = context.pathArgs().get("id");
         Rating rating = new Rating("a description", 5, "a user id");
         actiondHandler.handle(new RateBook(id, rating));
         return Response.forStatus(CREATED);

@@ -11,4 +11,8 @@ public class Rating {
         this.rate = rate;
         this.userId = userId;
     }
+
+    public Boolean inRange() {
+        return (rate >= 0) && (rate <= 5);
+    }
 }

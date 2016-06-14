@@ -5,17 +5,17 @@ import infrastructure.InMemoryBookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BooksActiondHandler {
+public class BooksActionHandler {
 
-    static final Logger LOG = LoggerFactory.getLogger(BooksActiondHandler.class);
+    static final Logger LOG = LoggerFactory.getLogger(BooksActionHandler.class);
 
     BookRepository repository;
 
-    public BooksActiondHandler() {
+    public BooksActionHandler() {
         this(new InMemoryBookRepository());
     }
 
-    public BooksActiondHandler(BookRepository repository) {
+    public BooksActionHandler(BookRepository repository) {
         this.repository = repository;
     }
 

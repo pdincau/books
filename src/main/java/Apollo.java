@@ -1,10 +1,9 @@
 import actions.AddBook;
 import actions.RateBook;
-import actions.BooksActiondHandler;
+import actions.BooksActionHandler;
 import com.spotify.apollo.Environment;
 import com.spotify.apollo.RequestContext;
 import com.spotify.apollo.Response;
-import com.spotify.apollo.Status;
 import com.spotify.apollo.httpservice.HttpService;
 import com.spotify.apollo.httpservice.LoadingException;
 import com.spotify.apollo.route.Route;
@@ -18,7 +17,7 @@ import static com.spotify.apollo.Status.CREATED;
 public class Apollo {
 
     private static Integer BOOKID = 1;
-    private static BooksActiondHandler actiondHandler = new BooksActiondHandler();
+    private static BooksActionHandler actiondHandler = new BooksActionHandler();
 
     public static void main(String[] args) throws LoadingException {
         HttpService.boot(Apollo::init, "apollo", args);

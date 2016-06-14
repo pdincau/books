@@ -8,13 +8,13 @@ public class BookRepository {
 
     static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 
-    private InMemoryEventStore eventStore;
+    private EventStore eventStore;
 
     public BookRepository() {
         this(InMemoryEventStore.getInstance());
     }
 
-    public BookRepository(InMemoryEventStore eventStore) {
+    public BookRepository(EventStore eventStore) {
         this.eventStore = eventStore;
     }
 

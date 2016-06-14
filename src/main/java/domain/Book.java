@@ -22,18 +22,18 @@ public class Book {
 
     public void rate(Rating rating) {
         if (rating.hasCorrectValue()) {
-            updateRatingWith(rating.getRate());
             applyNewEvent(new BookRated(id, rating.getRate(), rating.getDescription(), rating.getUserId()));
         }
     }
 
     private void applyNewEvent(BookRated event) {
-        events.add(event);
         applyEvent(event);
+        eventStore.save(event);
     }
 
     private void applyEvent(BookRated event) {
-        eventStore.save(event);
+        events.add(event);
+        updateRatingWith(event.getRate());
     }
 
     public Boolean hasId(Integer bookId) {

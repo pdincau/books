@@ -12,4 +12,8 @@ public class BookRated extends Event {
         this.description = description;
         this.userId = userId;
     }
+
+    public Integer getRate() {
+        return rate;
+    }
 }

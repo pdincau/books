@@ -12,7 +12,19 @@ public class Rating {
         this.userId = userId;
     }
 
-    public Boolean inRange() {
+    public Boolean hasCorrectValue() {
         return (rate >= 0) && (rate <= 5);
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import infrastructure.InMemoryEventStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,13 +8,13 @@ public class BookRepository {
 
     static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 
-    private EventStore eventStore;
+    private InMemoryEventStore eventStore;
 
     public BookRepository() {
-        this(EventStore.getInstance());
+        this(InMemoryEventStore.getInstance());
     }
 
-    public BookRepository(EventStore eventStore) {
+    public BookRepository(InMemoryEventStore eventStore) {
         this.eventStore = eventStore;
     }
 

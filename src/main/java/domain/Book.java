@@ -1,5 +1,6 @@
 package domain;
 
+import infrastructure.InMemoryEventStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +15,7 @@ public class Book {
     private Integer rate;
     private List<Event> events;
 
-    private EventStore eventStore = EventStore.getInstance();
+    private InMemoryEventStore eventStore = InMemoryEventStore.getInstance();
 
     public Book() {
         this.rate = 0;

@@ -1,6 +1,7 @@
 package actions;
 
 import domain.Book;
+import domain.BookRepository;
 import infrastructure.InMemoryBookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

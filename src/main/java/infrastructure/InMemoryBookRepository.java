@@ -1,6 +1,6 @@
 package infrastructure;
 
-import actions.BookRepository;
+import domain.BookRepository;
 import domain.Book;
 
 import java.util.ArrayList;

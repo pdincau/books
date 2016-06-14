@@ -4,10 +4,10 @@ import domain.Rating;
 
 public class RateBook {
 
-    private Integer bookId;
+    private final String bookId;
     private final Rating rating;
 
-    public RateBook(Integer bookId, Rating rating) {
+    public RateBook(String bookId, Rating rating) {
         this.bookId = bookId;
         this.rating = rating;
     }
@@ -16,7 +16,7 @@ public class RateBook {
         return rating;
     }
 
-    public Integer getBookId() {
+    public String getBookId() {
         return bookId;
     }
 }

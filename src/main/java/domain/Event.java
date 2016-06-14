@@ -2,9 +2,13 @@ package domain;
 
 public abstract class Event {
 
-    protected final Integer id;
+    protected final String id;
 
-    public Event(Integer id) {
+    public Event(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

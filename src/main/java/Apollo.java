@@ -7,7 +7,6 @@ import com.spotify.apollo.Response;
 import com.spotify.apollo.httpservice.HttpService;
 import com.spotify.apollo.httpservice.LoadingException;
 import com.spotify.apollo.route.Route;
-import domain.Book;
 import domain.Rating;
 import okio.ByteString;
 
@@ -16,7 +15,7 @@ import static com.spotify.apollo.Status.CREATED;
 
 public class Apollo {
 
-    private static Integer BOOKID = 1;
+    private static String BOOK_ID = "any isbn";
     private static BooksActionHandler actiondHandler = new BooksActionHandler();
 
     public static void main(String[] args) throws LoadingException {
@@ -30,14 +29,13 @@ public class Apollo {
     }
 
     private static Response<ByteString> addBook(RequestContext context)  {
-        Book book = new Book();
-        actiondHandler.handle(new AddBook(book));
+        actiondHandler.handle(new AddBook(BOOK_ID));
         return Response.forStatus(CREATED);
     }
 
     private static Response<ByteString> rateBook(RequestContext context)  {
         Rating rating = new Rating("a description", 5, "a user id");
-        actiondHandler.handle(new RateBook(BOOKID, rating));
+        actiondHandler.handle(new RateBook(BOOK_ID, rating));
         return Response.forStatus(CREATED);
     }
 }

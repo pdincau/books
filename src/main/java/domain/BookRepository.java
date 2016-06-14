@@ -1,10 +1,28 @@
 package domain;
 
-import domain.Book;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public interface BookRepository {
+public class BookRepository {
 
-    Book find(Integer bookId);
+    static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 
-    void save(Book book);
+    private EventStore eventStore;
+
+    public BookRepository() {
+        this(EventStore.getInstance());
+    }
+
+    public BookRepository(EventStore eventStore) {
+        this.eventStore = eventStore;
+    }
+
+    public Book findBy(String bookId) {
+        LOG.info("Find book with id: {}", bookId);
+        Book book = new Book();
+        book.setId(bookId);
+        book.replay(eventStore.findBy(bookId));
+        return book;
+    }
+
 }

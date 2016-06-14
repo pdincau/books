@@ -27,4 +27,5 @@ public class Rating {
     public String getUserId() {
         return userId;
     }
+
 }

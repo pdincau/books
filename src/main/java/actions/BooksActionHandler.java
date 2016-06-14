@@ -2,7 +2,6 @@ package actions;
 
 import domain.Book;
 import domain.BookRepository;
-import infrastructure.InMemoryBookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +12,7 @@ public class BooksActionHandler {
     BookRepository repository;
 
     public BooksActionHandler() {
-        this(new InMemoryBookRepository());
+        this(new BookRepository());
     }
 
     public BooksActionHandler(BookRepository repository) {
@@ -22,12 +21,13 @@ public class BooksActionHandler {
 
     public void handle(AddBook action) {
         LOG.info("Handle command: {}", action);
-        repository.save(action.getBook());
+        Book book = new Book();
+        book.create(action.getBookId());
     }
 
     public void handle(RateBook action) {
         LOG.info("Handle command: {}", action);
-        Book book = repository.find(action.getBookId());
+        Book book = repository.findBy(action.getBookId());
         book.rate(action.getRating());
     }
 }

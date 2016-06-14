@@ -1,23 +1,32 @@
 package domain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
 
-    private Integer id;
+    static final Logger LOG = LoggerFactory.getLogger(Book.class);
+
+    private String id;
     private Integer rate;
     private List<Event> events;
 
-    private EventStore eventStore = new EventStore();
+    private EventStore eventStore = EventStore.getInstance();
 
     public Book() {
         this.rate = 0;
         this.events = new ArrayList<>();
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public void create(String id) {
+        applyNewEvent(new BookCreated(id));
     }
 
     public void rate(Rating rating) {
@@ -26,21 +35,19 @@ public class Book {
         }
     }
 
-    private void applyNewEvent(BookRated event) {
+    public void replay(List<Event> events) {
+        LOG.info("Replaying: {} events", events.size());
+        events.forEach(event -> applyEvent(event));
+    }
+
+    private void applyNewEvent(Event event) {
         applyEvent(event);
         eventStore.save(event);
     }
 
-    private void applyEvent(BookRated event) {
+    private void applyEvent(Event event) {
+        LOG.info("Applying event: {}", event);
         events.add(event);
-        updateRatingWith(event.getRate());
     }
 
-    public Boolean hasId(Integer bookId) {
-        return id.compareTo(bookId) == 0;
-    }
-
-    private void updateRatingWith(Integer rate) {
-        this.rate += rate;
-    }
 }

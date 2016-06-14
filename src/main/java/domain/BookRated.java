@@ -6,8 +6,8 @@ public class BookRated extends Event {
     private final String description;
     private final String userId;
 
-    public BookRated(Integer id, Integer rate, String description, String userId) {
-        super(id);
+    public BookRated(String bookId, Integer rate, String description, String userId) {
+        super(bookId);
         this.rate = rate;
         this.description = description;
         this.userId = userId;

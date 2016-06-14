@@ -1,16 +1,14 @@
 package actions;
 
-import domain.Book;
-
 public class AddBook {
 
-    private Book book;
+    private String bookId;
 
-    public AddBook(Book book) {
-        this.book = book;
+    public AddBook(String bookId) {
+        this.bookId = bookId;
     }
 
-    public Book getBook() {
-        return book;
+    public String getBookId() {
+        return bookId;
     }
 }

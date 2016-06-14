@@ -25,7 +25,7 @@ public class Apollo {
     static void init(Environment environment) {
         environment.routingEngine()
                 .registerAutoRoute(Route.sync("GET", "/books/add", Apollo::addBook))
-                .registerAutoRoute(Route.sync("GET", "/books/1/rate", Apollo::rateBook));
+                .registerAutoRoute(Route.sync("GET", "/books/<id>/rate", Apollo::rateBook));
     }
 
     private static Response<ByteString> addBook(RequestContext context)  {
@@ -34,8 +34,9 @@ public class Apollo {
     }
 
     private static Response<ByteString> rateBook(RequestContext context)  {
+        String id = context.pathArgs().get("id")
         Rating rating = new Rating("a description", 5, "a user id");
-        actiondHandler.handle(new RateBook(BOOK_ID, rating));
+        actiondHandler.handle(new RateBook(id, rating));
         return Response.forStatus(CREATED);
     }
 }

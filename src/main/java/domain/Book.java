@@ -1,6 +1,6 @@
 package domain;
 
-import infrastructure.InMemoryEventStore;
+import infrastructure.persistence.InMemoryEventStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

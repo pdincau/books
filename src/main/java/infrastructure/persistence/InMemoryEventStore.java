@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.persistence;
 
 import domain.Event;
 import domain.EventStore;

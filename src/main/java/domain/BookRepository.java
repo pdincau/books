@@ -4,6 +4,8 @@ import infrastructure.persistence.InMemoryEventStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class BookRepository {
 
     static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
@@ -20,9 +22,14 @@ public class BookRepository {
 
     public Book findBy(String bookId) {
         LOG.info("Find book with id: {}", bookId);
+        List<Event> events = eventStore.findBy(bookId);
         Book book = new Book();
-        book.setId(bookId);
-        book.replay(eventStore.findBy(bookId));
+        if (events.isEmpty()) {
+            book = new NullBook();
+        } else {
+            book.setId(bookId);
+            book.replay(events);
+        }
         return book;
     }
 

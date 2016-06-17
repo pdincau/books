@@ -1,4 +1,4 @@
-package domain;
+package domain.events;
 
 public class BookRated extends Event {
 

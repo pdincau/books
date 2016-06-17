@@ -1,5 +1,7 @@
 package domain;
 
+import domain.events.Event;
+
 import java.util.List;
 
 public interface EventStore {

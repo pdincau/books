@@ -1,6 +1,6 @@
 package infrastructure.persistence;
 
-import domain.Event;
+import domain.events.Event;
 import domain.EventStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

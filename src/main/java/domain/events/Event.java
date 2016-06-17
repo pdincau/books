@@ -1,4 +1,4 @@
-package domain;
+package domain.events;
 
 public abstract class Event {
 

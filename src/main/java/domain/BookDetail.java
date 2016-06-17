@@ -1,5 +1,7 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class BookDetail {
 
     private final String title;
@@ -10,5 +12,9 @@ public class BookDetail {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
+    }
+
+    public Boolean isComplete() {
+        return StringUtils.isAnyEmpty(title, author, isbn);
     }
 }

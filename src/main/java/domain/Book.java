@@ -35,7 +35,9 @@ public class Book {
     }
 
     public void create(String id, BookDetail detail) {
-        applyNewEvent(new BookCreated(id, detail));
+        if (detail.isComplete()) {
+            applyNewEvent(new BookCreated(id, detail));
+        }
     }
 
     public void rate(Rating rating) {

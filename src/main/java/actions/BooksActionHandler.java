@@ -20,13 +20,13 @@ public class BooksActionHandler {
     }
 
     public void handle(AddBook action) {
-        LOG.info("Handle command: {}", action);
+        LOG.info("Handling command: {}", action);
         Book book = new Book();
         book.create(action.getBookId(), action.getBookDetail());
     }
 
     public void handle(RateBook action) {
-        LOG.info("Handle command: {}", action);
+        LOG.info("Handling command: {}", action);
         Book book = repository.findBy(action.getBookId());
         book.rate(action.getRating());
     }

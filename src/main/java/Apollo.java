@@ -36,7 +36,7 @@ public class Apollo {
 
     private static Response<ByteString> addBook(RequestContext context)  {
         LOG.info("Received request to add a book");
-        actiondHandler.handle(new AddBook(BOOK_ID));
+        actiondHandler.handle(new AddBook(BOOK_ID, "Title", "Author", "ISBN"));
         return Response.forStatus(CREATED);
     }
 

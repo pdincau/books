@@ -22,7 +22,7 @@ public class BooksActionHandler {
     public void handle(AddBook action) {
         LOG.info("Handle command: {}", action);
         Book book = new Book();
-        book.create(action.getBookId());
+        book.create(action.getBookId(), action.getTitle(), action.getAuthor(), action.getIsbn());
     }
 
     public void handle(RateBook action) {

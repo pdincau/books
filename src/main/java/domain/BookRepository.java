@@ -22,7 +22,7 @@ public class BookRepository {
     }
 
     public Book findBy(String bookId) {
-        LOG.info("Find book with id: {}", bookId);
+        LOG.info("Findind book with id: {}", bookId);
         List<Event> events = eventStore.findBy(bookId);
         Book book = new Book();
         if (events.isEmpty()) {

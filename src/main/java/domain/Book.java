@@ -15,13 +15,11 @@ public class Book {
     static final Logger LOG = LoggerFactory.getLogger(Book.class);
 
     private String id;
+    private BookDetail detail;
     private Integer rate;
     private List<Event> events;
 
     private InMemoryEventStore eventStore = InMemoryEventStore.getInstance();
-    private String title;
-    private String author;
-    private String isbn;
 
     public Book() {
         this.rate = 0;
@@ -32,20 +30,12 @@ public class Book {
         this.id = id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDetail(BookDetail detail) {
+        this.detail = detail;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public void create(String id, String title, String author, String isbn) {
-        applyNewEvent(new BookCreated(id, title, author, isbn));
+    public void create(String id, BookDetail detail) {
+        applyNewEvent(new BookCreated(id, detail));
     }
 
     public void rate(Rating rating) {

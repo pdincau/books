@@ -8,6 +8,8 @@ import com.spotify.apollo.Response;
 import com.spotify.apollo.httpservice.HttpService;
 import com.spotify.apollo.httpservice.LoadingException;
 import com.spotify.apollo.route.Route;
+import domain.BookDetail;
+import infrastructure.rest.CreationRequest;
 import infrastructure.rest.RateRequest;
 import domain.Rating;
 import okio.ByteString;
@@ -36,7 +38,9 @@ public class Apollo {
 
     private static Response<ByteString> addBook(RequestContext context)  {
         LOG.info("Received request to add a book");
-        actiondHandler.handle(new AddBook(BOOK_ID, "Title", "Author", "ISBN"));
+        CreationRequest request = creationRequestFrom(context);
+        BookDetail detail = detailFrom(request);
+        actiondHandler.handle(new AddBook(BOOK_ID, detail));
         return Response.forStatus(CREATED);
     }
 
@@ -49,9 +53,18 @@ public class Apollo {
         return Response.forStatus(CREATED);
     }
 
+    private static CreationRequest creationRequestFrom(RequestContext context) {
+        String payload = context.request().payload().orElse(ByteString.EMPTY).utf8();
+        return new Gson().fromJson(payload, CreationRequest.class);
+    }
+
     private static RateRequest rateRequestFrom(RequestContext context) {
         String payload = context.request().payload().orElse(ByteString.EMPTY).utf8();
         return new Gson().fromJson(payload, RateRequest.class);
+    }
+
+    private static BookDetail detailFrom(CreationRequest request) {
+        return new BookDetail(request.getTitle(), request.getAuthor(), request.getIsbn());
     }
 
     private static Rating ratingFrom(RateRequest request) {

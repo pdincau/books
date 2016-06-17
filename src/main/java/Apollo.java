@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 
 import static com.spotify.apollo.Status.CREATED;
 
-
 public class Apollo {
 
     private static final String BOOK_ID = "anybookid";

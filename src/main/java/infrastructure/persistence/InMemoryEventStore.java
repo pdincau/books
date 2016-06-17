@@ -1,7 +1,9 @@
 package infrastructure.persistence;
 
+import domain.EventPublisher;
 import domain.events.Event;
 import domain.EventStore;
+import infrastructure.queue.RabbitMQEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +17,7 @@ public class InMemoryEventStore implements EventStore {
     static final Logger LOG = LoggerFactory.getLogger(InMemoryEventStore.class);
 
     private static InMemoryEventStore instance = null;
+    private final EventPublisher eventPublisher;
 
     List<Event> events;
 
@@ -26,13 +29,19 @@ public class InMemoryEventStore implements EventStore {
     }
 
     public InMemoryEventStore() {
-        events = new ArrayList<>();
+        this(new RabbitMQEventPublisher());
+    }
+
+    public InMemoryEventStore(EventPublisher eventPublisher) {
+        this.events = new ArrayList<>();
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
     public void save(Event event) {
         LOG.info("Saving event: {}", event);
         events.add(event);
+        eventPublisher.publish(event);
     }
 
     @Override

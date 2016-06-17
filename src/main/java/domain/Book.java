@@ -51,6 +51,7 @@ public class Book {
 
     private void applyEvent(Event event) {
         LOG.info("Applying event: {}", event);
+        event.mutate(this);
         events.add(event);
     }
 

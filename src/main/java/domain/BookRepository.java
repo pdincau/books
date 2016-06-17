@@ -28,7 +28,6 @@ public class BookRepository {
         if (events.isEmpty()) {
             book = new NullBook();
         } else {
-            book.setId(bookId);
             book.replay(events);
         }
         return book;

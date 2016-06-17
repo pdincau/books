@@ -1,5 +1,7 @@
 package domain.events;
 
+import domain.Book;
+
 public class BookRated extends Event {
 
     private final Integer rate;
@@ -15,5 +17,10 @@ public class BookRated extends Event {
 
     public Integer getRate() {
         return rate;
+    }
+
+    @Override
+    public void mutate(Book book) {
+
     }
 }

@@ -19,8 +19,7 @@ public class RabbitMQEventPublisher implements EventPublisher {
         try {
             LOG.info("Publishing event: {}", event);
             Producer producer = new Producer(QUEUE_NAME);
-            EventDto eventDto = EventDtoFactory.createFrom(event);
-            String message = new Gson().toJson(eventDto);
+            String message = new Gson().toJson(event);
             producer.sendMessage(message);
             LOG.info("Event published as json: {}", message);
         } catch (IOException e) {

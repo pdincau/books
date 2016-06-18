@@ -15,6 +15,6 @@ public class BookDetail {
     }
 
     public Boolean isComplete() {
-        return StringUtils.isAnyEmpty(title, author, isbn);
+        return !StringUtils.isAnyEmpty(title, author, isbn);
     }
 }

@@ -40,7 +40,7 @@ public class Apollo {
     private static Response<ByteString> addBook(RequestContext context)  {
         LOG.info("Received request to add a book");
         CreationRequest request = creationRequestFrom(context);
-        BookDetail detail = DetailFactory.from(request);
+        BookDetail detail = DetailFactory.createFrom(request);
         actiondHandler.handle(new AddBook(BOOK_ID, detail));
         return Response.forStatus(CREATED);
     }
@@ -49,7 +49,7 @@ public class Apollo {
         LOG.info("Received request to rate a book");
         String id = context.pathArgs().get("id");
         RateRequest request = rateRequestFrom(context);
-        Rating rating = RatingFactory.from(request);
+        Rating rating = RatingFactory.createFrom(request);
         actiondHandler.handle(new RateBook(id, rating));
         return Response.forStatus(CREATED);
     }

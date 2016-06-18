@@ -6,6 +6,8 @@ Compile and Run
     $ mvn package
     $ java -jar target/apollo.jar
 
+You will need also a rabbit-mq server running.
+
 Try a request:
 
 Create Book:
@@ -20,5 +22,4 @@ Next to do
 ----------
 
 1) Improve rabbitmq publisher (async, instantiation, etc)
-2) Store first views
 

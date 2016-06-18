@@ -1,4 +1,4 @@
-Simple Spike with Apollo
+Books
 
 Compile and Run
 ---------------
@@ -18,8 +18,10 @@ Vote Book:
 
     $ curl -v -XPOST --data "{\"rate\": 2}" http://localhost:8080/books/anybookid/rate
 
-Next to do
-----------
-
-1) Improve rabbitmq publisher (async, instantiation, etc)
+Resources used:
+--------------
+https://msdn.microsoft.com/en-us/library/dn568103.aspx
+http://www.cqrs.nu/tutorial/cs/02-domain-logic
+https://github.com/gregoryyoung
+https://dzone.com/articles/getting-started-rabbitmq-java
 

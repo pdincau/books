@@ -16,9 +16,9 @@ public class RabbitMQEventPublisher implements EventPublisher {
 
     @Override
     public void publish(Event event) {
-        LOG.info("Publishing event: {}", event);
         try {
-        Producer producer = new Producer(QUEUE_NAME);
+            LOG.info("Publishing event: {}", event);
+            Producer producer = new Producer(QUEUE_NAME);
             EventDto eventDto = EventDtoFactory.createFrom(event);
             String message = new Gson().toJson(eventDto);
             producer.sendMessage(message);

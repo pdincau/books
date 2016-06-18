@@ -8,4 +8,11 @@ Compile and Run
 
 Try a request:
 
-    $ curl http://localhost:8080
+Create Book:
+
+    $ curl -v -XPOST --data "{\"title\": \"tdd\", \"author\": \"beck\", \"isbn\":\"any isbn\"}" http://localhost:8080/books/add
+
+Vote Book:
+
+    $ curl -v -XPOST --data "{\"rate\": 2}" http://localhost:8080/books/anybookid/rate
+

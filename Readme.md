@@ -4,7 +4,7 @@ Compile and Run
 ---------------
 
     $ mvn package
-    $ java -jar target/apollo.jar
+    $ java -jar target/books.jar
 
 You will need also a rabbit-mq server running.
 

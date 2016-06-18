@@ -20,21 +20,21 @@ import org.slf4j.LoggerFactory;
 
 import static com.spotify.apollo.Status.CREATED;
 
-public class Apollo {
+public class Books {
 
     private static final String BOOK_ID = "anybookid";
 
-    private static final Logger LOG = LoggerFactory.getLogger(Apollo.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Books.class);
     private static BooksActionHandler actiondHandler = new BooksActionHandler();
 
     public static void main(String[] args) throws LoadingException {
-        HttpService.boot(Apollo::init, "apollo", args);
+        HttpService.boot(Books::init, "books", args);
     }
 
     static void init(Environment environment) {
         environment.routingEngine()
-                .registerAutoRoute(Route.sync("POST", "/books/add", Apollo::addBook))
-                .registerAutoRoute(Route.sync("POST", "/books/<id>/rate", Apollo::rateBook));
+                .registerAutoRoute(Route.sync("POST", "/books/add", Books::addBook))
+                .registerAutoRoute(Route.sync("POST", "/books/<id>/rate", Books::rateBook));
     }
 
     private static Response<ByteString> addBook(RequestContext context)  {

@@ -20,8 +20,9 @@ Vote Book:
 
 Resources used:
 --------------
-https://msdn.microsoft.com/en-us/library/dn568103.aspx
-http://www.cqrs.nu/tutorial/cs/02-domain-logic
-https://github.com/gregoryyoung
-https://dzone.com/articles/getting-started-rabbitmq-java
+
+* https://msdn.microsoft.com/en-us/library/dn568103.aspx
+* http://www.cqrs.nu/tutorial/cs/02-domain-logic
+* https://github.com/gregoryyoung
+* https://dzone.com/articles/getting-started-rabbitmq-java
 

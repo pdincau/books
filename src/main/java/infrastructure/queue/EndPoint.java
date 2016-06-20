@@ -19,9 +19,4 @@ public abstract class EndPoint {
         channel = connection.createChannel();
         channel.queueDeclare(endpointName, false, false, false, null);
     }
-
-    public void close() throws IOException {
-        this.channel.close();
-        this.connection.close();
-    }
 }

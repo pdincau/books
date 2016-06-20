@@ -29,5 +29,7 @@ public class BooksActionHandler {
         LOG.info("Handling command: {}", action);
         Book book = repository.findBy(action.getBookId());
         book.rate(action.getRating());
+
+        LOG.info("new rating: {}", book.getRate());
     }
 }

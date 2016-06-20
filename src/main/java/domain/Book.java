@@ -16,14 +16,26 @@ public class Book {
 
     private String id;
     private BookDetail detail;
-    private Integer rate;
+    private Double rate;
     private List<Event> events;
 
     private InMemoryEventStore eventStore = InMemoryEventStore.getInstance();
 
     public Book() {
-        this.rate = 0;
+        this.rate = 0.0;
         this.events = new ArrayList<>();
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     public void setId(String id) {

@@ -12,15 +12,15 @@ public class RabbitMQEventPublisher implements EventPublisher {
 
     static final Logger LOG = LoggerFactory.getLogger(RabbitMQEventPublisher.class);
 
-    private final static String QUEUE_NAME = "book_events";
+    private final static String EXCHANGE_NAME = "book_events";
 
     @Override
     public void publish(Event event) {
         try {
             LOG.info("Publishing event: {}", event);
-            Producer producer = new Producer(QUEUE_NAME);
+            Producer producer = new Producer(EXCHANGE_NAME);
             String message = new Gson().toJson(event);
-            producer.sendMessage(message);
+            producer.sendMessage(message, event.getClass().getSimpleName());
             LOG.info("Event published as json: {}", message);
         } catch (IOException e) {
             LOG.error("Failed while publishing event: {}", event);

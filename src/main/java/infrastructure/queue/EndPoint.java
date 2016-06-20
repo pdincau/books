@@ -17,6 +17,6 @@ public abstract class EndPoint {
         factory.setHost("localhost");
         connection = factory.newConnection();
         channel = connection.createChannel();
-        channel.queueDeclare(endpointName, false, false, false, null);
+        channel.exchangeDeclare(endpointName, "direct");
     }
 }

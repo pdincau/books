@@ -8,7 +8,7 @@ public class Producer extends EndPoint {
         super(endPointName);
     }
 
-    public void sendMessage(String object) throws IOException {
-        channel.basicPublish("", endPointName, null, object.getBytes());
+    public void sendMessage(String object, String topic) throws IOException {
+        channel.basicPublish(endPointName, topic, null, object.getBytes());
     }
 }

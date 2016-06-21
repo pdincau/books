@@ -34,7 +34,8 @@ public class Books {
     static void init(Environment environment) {
         environment.routingEngine()
                 .registerAutoRoute(Route.sync("POST", "/books/add", Books::addBook))
-                .registerAutoRoute(Route.sync("POST", "/books/<id>/rate", Books::rateBook));
+                .registerAutoRoute(Route.sync("POST", "/books/<id>/rate", Books::rateBook))
+                .registerAutoRoute(Route.sync("GET", "/ping", context -> "pong"));
     }
 
     private static Response<ByteString> addBook(RequestContext context)  {

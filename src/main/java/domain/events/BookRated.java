@@ -2,12 +2,6 @@ package domain.events;
 
 import domain.Book;
 
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
-
 public class BookRated extends Event {
 
     private final Integer rate;
@@ -23,7 +17,8 @@ public class BookRated extends Event {
 
     @Override
     public void mutate(Book book) {
-        long howManyRates = book.getEvents().stream()
+        long howManyRates = book.getEvents()
+                .stream()
                 .filter(event -> "BookRated".equals(event.getName()))
                 .count();
 

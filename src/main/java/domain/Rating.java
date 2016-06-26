@@ -12,7 +12,7 @@ public class Rating {
         this.userId = userId;
     }
 
-    public Boolean hasCorrectValue() {
+    public Boolean isValid() {
         return (rate >= 0) && (rate <= 5);
     }
 

@@ -53,7 +53,7 @@ public class Book {
     }
 
     public void rate(Rating rating) {
-        if (rating.hasCorrectValue()) {
+        if (rating.isValid()) {
             applyNewEvent(new BookRated(id, rating.getRate(), rating.getDescription(), rating.getUserId()));
         }
     }

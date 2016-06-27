@@ -58,7 +58,7 @@ public class Book {
         }
     }
 
-    public void replay(List<Event> events) {
+    public void loadFromHistory(List<Event> events) {
         LOG.info("Replaying: {} events", events.size());
         events.forEach(event -> applyEvent(event));
     }

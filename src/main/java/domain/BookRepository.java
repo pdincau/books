@@ -28,7 +28,7 @@ public class BookRepository {
         if (events.isEmpty()) {
             book = new NullBook();
         } else {
-            book.replay(events);
+            book.loadFromHistory(events);
         }
         return book;
     }

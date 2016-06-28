@@ -21,6 +21,13 @@ public class Book {
 
     private InMemoryEventStore eventStore = InMemoryEventStore.getInstance();
 
+    public static Book from(List<Event> events) {
+        if (events.isEmpty()) {
+            return new NullBook();
+        }
+        return new Book().replay(events);
+    }
+
     public Book() {
         this.rate = 0.0;
         this.events = new ArrayList<>();
@@ -58,9 +65,10 @@ public class Book {
         }
     }
 
-    public void loadFromHistory(List<Event> events) {
+    private Book replay(List<Event> events) {
         LOG.info("Replaying: {} events", events.size());
         events.forEach(event -> applyEvent(event));
+        return this;
     }
 
     private void applyNewEvent(Event event) {
@@ -73,4 +81,5 @@ public class Book {
         event.mutate(this);
         events.add(event);
     }
+
 }

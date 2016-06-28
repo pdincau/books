@@ -24,13 +24,7 @@ public class BookRepository {
     public Book findBy(String bookId) {
         LOG.info("Findind book with id: {}", bookId);
         List<Event> events = eventStore.findBy(bookId);
-        Book book = new Book();
-        if (events.isEmpty()) {
-            book = new NullBook();
-        } else {
-            book.loadFromHistory(events);
-        }
-        return book;
+        return Book.from(events);
     }
 
 }

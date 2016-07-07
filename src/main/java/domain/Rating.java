@@ -1,5 +1,7 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Rating {
 
     private final String description;
@@ -13,6 +15,10 @@ public class Rating {
     }
 
     public Boolean isValid() {
+        return inRange() && StringUtils.isNotEmpty(userId);
+    }
+
+    private boolean inRange() {
         return (rate >= 0) && (rate <= 5);
     }
 

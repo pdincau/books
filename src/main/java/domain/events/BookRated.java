@@ -17,13 +17,7 @@ public class BookRated extends Event {
 
     @Override
     public void mutate(Book book) {
-        long howManyRates = book.getEvents()
-                .stream()
-                .filter(event -> "BookRated".equals(event.getName()))
-                .count();
-
-        Double newRate = ((book.getRate() * howManyRates) + rate) / (howManyRates + 1);
-        book.setRate(newRate);
+        book.addReviewer(userId);
     }
 
 }

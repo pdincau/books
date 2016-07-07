@@ -16,10 +16,10 @@ public class Book {
 
     private String id;
     private BookDetail detail;
-    private Double rate;
     private List<Event> events;
 
     private InMemoryEventStore eventStore = InMemoryEventStore.getInstance();
+    private List<String> reviewers;
 
     public static Book from(List<Event> events) {
         if (events.isEmpty()) {
@@ -29,20 +29,12 @@ public class Book {
     }
 
     public Book() {
-        this.rate = 0.0;
+        this.reviewers = new ArrayList<>();
         this.events = new ArrayList<>();
     }
 
     public List<Event> getEvents() {
         return events;
-    }
-
-    public Double getRate() {
-        return rate;
-    }
-
-    public void setRate(Double rate) {
-        this.rate = rate;
     }
 
     public void setId(String id) {
@@ -60,9 +52,19 @@ public class Book {
     }
 
     public void rate(Rating rating) {
-        if (rating.isValid()) {
+        //here i should probably contact a user service
+        //what can i do to show error?
+        if (rating.isValid() && doesNotHaveReviewFrom(rating.getUserId())) {
             applyNewEvent(new BookRated(id, rating.getRate(), rating.getDescription(), rating.getUserId()));
         }
+    }
+
+    public void addReviewer(String userId) {
+        reviewers.add(userId);
+    }
+
+    private Boolean doesNotHaveReviewFrom(String userId) {
+        return !reviewers.contains(userId);
     }
 
     private Book replay(List<Event> events) {

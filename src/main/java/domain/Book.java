@@ -33,10 +33,6 @@ public class Book {
         this.events = new ArrayList<>();
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
     public void setId(String id) {
         this.id = id;
     }

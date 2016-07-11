@@ -2,6 +2,8 @@ package actions;
 
 import domain.Book;
 import domain.BookRepository;
+import domain.IdGenerator;
+import infrastructure.DummyIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,20 +11,22 @@ public class BooksActionHandler {
 
     static final Logger LOG = LoggerFactory.getLogger(BooksActionHandler.class);
 
-    BookRepository repository;
+    private BookRepository repository;
+    private IdGenerator idGenerator;
 
     public BooksActionHandler() {
-        this(new BookRepository());
+        this(new BookRepository(), new DummyIdGenerator());
     }
 
-    public BooksActionHandler(BookRepository repository) {
+    public BooksActionHandler(BookRepository repository, IdGenerator idGenerator) {
         this.repository = repository;
+        this.idGenerator = idGenerator;
     }
 
     public void handle(AddBook action) {
         LOG.info("Handling command: {}", action);
         Book book = new Book();
-        book.create(action.getBookId(), action.getBookDetail());
+        book.create(idGenerator.nextId(), action.getBookDetail());
     }
 
     public void handle(RateBook action) {

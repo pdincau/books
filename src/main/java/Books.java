@@ -42,7 +42,7 @@ public class Books {
         LOG.info("Received request to add a book");
         CreationRequest request = creationRequestFrom(context);
         BookDetail detail = DetailFactory.createFrom(request);
-        actiondHandler.handle(new AddBook(BOOK_ID, detail));
+        actiondHandler.handle(new AddBook(detail));
         return Response.forStatus(CREATED);
     }
 

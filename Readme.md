@@ -1,5 +1,7 @@
 Books
 
+A Cqrs Event Sourcing Sample
+
 Compile and Run
 ---------------
 

@@ -31,7 +31,7 @@ public class Books {
         HttpService.boot(Books::init, "books", args);
     }
 
-    static void init(Environment environment) {
+    private static void init(Environment environment) {
         environment.routingEngine()
                 .registerAutoRoute(Route.sync("POST", "/books/add", Books::addBook))
                 .registerAutoRoute(Route.sync("POST", "/books/<id>/rate", Books::rateBook))

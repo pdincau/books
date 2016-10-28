@@ -14,12 +14,12 @@ import static java.util.stream.Collectors.toList;
 
 public class InMemoryEventStore implements EventStore {
 
-    static final Logger LOG = LoggerFactory.getLogger(InMemoryEventStore.class);
+    private static final Logger LOG = LoggerFactory.getLogger(InMemoryEventStore.class);
 
     private static InMemoryEventStore instance = null;
     private final EventPublisher eventPublisher;
 
-    List<Event> events;
+    private List<Event> events;
 
     public static InMemoryEventStore getInstance() {
         if(instance == null) {
@@ -28,11 +28,11 @@ public class InMemoryEventStore implements EventStore {
         return instance;
     }
 
-    public InMemoryEventStore() {
+    private InMemoryEventStore() {
         this(new RabbitMQEventPublisher());
     }
 
-    public InMemoryEventStore(EventPublisher eventPublisher) {
+    private InMemoryEventStore(EventPublisher eventPublisher) {
         this.events = new ArrayList<>();
         this.eventPublisher = eventPublisher;
     }

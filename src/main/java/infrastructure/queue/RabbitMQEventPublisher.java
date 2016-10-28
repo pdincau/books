@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class RabbitMQEventPublisher implements EventPublisher {
 
-    static final Logger LOG = LoggerFactory.getLogger(RabbitMQEventPublisher.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RabbitMQEventPublisher.class);
 
     private final static String EXCHANGE_NAME = "book_events";
 
